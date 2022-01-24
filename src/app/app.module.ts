@@ -14,6 +14,7 @@ import { ShoppingListService } from './services/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-s
     ShoppingListEditComponent,
     DropdownDirective,
     RecipeStartComponent,
+    RecipeEditComponent,
   ],
   imports: [
     BrowserModule,
