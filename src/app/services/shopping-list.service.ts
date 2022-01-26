@@ -16,6 +16,12 @@ export class ShoppingListService {
   constructor() { }
 
   addIngredient(ingredient: Ingredient) {
+    for (let ing of this.ingredients) {
+      if (ing.name === ingredient.name) {
+        ing.amount += ingredient.amount;
+        return;
+      }
+    }
     this.ingredients.push(ingredient);
     this.ingredientsChanged.next(this.ingredients.slice());
   }
