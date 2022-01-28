@@ -31,11 +31,30 @@ export class ShoppingListService {
   }
 
   addIngredients(ingredients: Ingredient[]) {
+    let ingredientUpdated = false;
+
+    for (let ing of this.ingredients) {
+      for (let ingNew of ingredients) {
+        if (ing.name === ingNew.name) {
+          ing.amount += ingNew.amount;
+          ingredientUpdated = true;
+        }
+      }
+    }
+    if (ingredientUpdated) {
+      return;
+    }
+
     this.ingredients.push(...ingredients);
-    this.ingredientsChanged.next(ingredients.slice());
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 
   getIngredient(index: number) {
     return this.ingredients[index];
+  }
+
+  updateIngredient(index: number, newIngredient: Ingredient) {
+    this.ingredients[index] = newIngredient;
+    this.ingredientsChanged.next(this.ingredients.slice());
   }
 }

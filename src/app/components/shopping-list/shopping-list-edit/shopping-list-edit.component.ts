@@ -9,7 +9,7 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   templateUrl: './shopping-list-edit.component.html',
   styleUrls: ['./shopping-list-edit.component.css']
 })
-export class ShoppingListEditComponent implements OnInit, OnDestroy {
+export class ShoppingListEditComponent implements OnInit {
   @ViewChild('f', {static: false}) slForm!: NgForm;
   subscription!: Subscription;
   editMode: boolean = false;
@@ -32,14 +32,19 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     const value = form.value;
+    const ingredient = new Ingredient(value.name, value.amount);
 
-    this.shoppingListService.addIngredient(new Ingredient(value.name, value.amount));
+    if (this.editMode) {
+      this.shoppingListService.updateIngredient(this.edittedItemIndex, ingredient);
+    } else {
+      this.shoppingListService.addIngredient(ingredient);
+    }
+
+    this.editMode = false;
+    form.reset();
   }
 
-  ngOnDestroy(): void {
-      this.shoppingListService.startedEditing.unsubscribe();
-  }
 
 }
