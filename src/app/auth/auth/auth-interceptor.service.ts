@@ -20,7 +20,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
-          if (user.email === '') {
+          if (user.email === '' || user.email === undefined || user.email.length === 0) {
             return next.handle(req);
           }
           const modifiedRequest = req.clone({params: new HttpParams().set('auth', user.token + '')});
