@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthResponseData } from '../auth-response-data.model';
 import { AuthService } from '../auth.service';
@@ -11,14 +12,14 @@ import { AuthService } from '../auth.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
-  errorMessage: string = "";
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
+    this.isLoginMode = !this.isLoginMode; 
   }
 
   onSubmit(authForm: NgForm) {
@@ -39,6 +40,7 @@ export class AuthComponent implements OnInit {
     authOsbervable.subscribe(
       (responseData) => {
         console.log(responseData);
+        this.router.navigate(['/recipes']);
       },
       (errorMessage) => {
         console.log(errorMessage);
