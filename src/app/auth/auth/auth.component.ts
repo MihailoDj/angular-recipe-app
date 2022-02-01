@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AuthResponseData } from '../auth-response-data.model';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -26,20 +28,23 @@ export class AuthComponent implements OnInit {
 
     const email = authForm.value.email;
     const password = authForm.value.password;
+    let authOsbervable: Observable<AuthResponseData>;
 
     if (this.isLoginMode) {
-      //ToDo: impl login
+      authOsbervable = this.authService.login(email, password);
     } else {
-      this.authService.signUp(email, password).subscribe(
-        (responseData) => {
-          console.log(responseData);
-        },
-        (errorMessage) => {
-          console.log(errorMessage);
-          this.errorMessage = errorMessage;
-        }
-      );
+      authOsbervable = this.authService.signUp(email, password);
     }
+
+    authOsbervable.subscribe(
+      (responseData) => {
+        console.log(responseData);
+      },
+      (errorMessage) => {
+        console.log(errorMessage);
+        this.errorMessage = errorMessage;
+      }
+    );
 
     authForm.reset();
   }
