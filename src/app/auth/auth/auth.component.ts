@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode: boolean = true;
-  errorMessage: string = '';
+  errorMessage!: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -49,5 +49,9 @@ export class AuthComponent implements OnInit {
     );
 
     authForm.reset();
+  }
+
+  onHandleError() {
+    this.errorMessage = null;
   }
 }

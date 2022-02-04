@@ -20,6 +20,7 @@ import { DataStorageService } from './shared/data-storage.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth/auth.component';
 import { AuthInterceptorService } from './auth/auth/auth-interceptor.service';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthInterceptorService } from './auth/auth/auth-interceptor.service';
     RecipeStartComponent,
     RecipeEditComponent,
     AuthComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
