@@ -3,19 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './services/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RecipeService } from './services/recipe.service';
-import { DataStorageService } from './shared/data-storage.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth/auth.component';
-import { AuthInterceptorService } from './auth/auth/auth-interceptor.service';
-import { AlertComponent } from './shared/alert/alert.component';
 import { RecipesModule } from './components/recipes/recipes.module';
 import { ShoppingListModule } from './components/shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core.module';
 
 @NgModule({
   declarations: [
@@ -31,13 +26,8 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
-  ],
-  providers: [
-    ShoppingListService,
-    RecipeService,
-    DataStorageService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    SharedModule,
+    CoreModule
   ],
   bootstrap: [AppComponent],
 })
