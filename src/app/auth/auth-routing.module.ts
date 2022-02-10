@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 
-const routes = [{ path: 'auth', component: AuthComponent }];
+const routes = [{ path: '', component: AuthComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
