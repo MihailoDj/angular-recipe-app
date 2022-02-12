@@ -9,7 +9,7 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private userSub!: Subscription;
+  private userSub: Subscription;
   collapsed: boolean = true;
   isAuthenticated: boolean = false;
 
